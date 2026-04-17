@@ -1,0 +1,946 @@
+<html lang="es"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Mundial Abraham A. Cerezo</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&amp;family=Nunito:wght@400;600;700;800;900&amp;display=swap" rel="stylesheet">
+<style>
+:root{
+  --blue:#1565c0; --blue2:#1976d2; --blue-l:#e3f2fd; --blue-ll:#f0f8ff;
+  --red:#e53935;  --red-l:#ffebee;
+  --gold:#f9a825; --gold-l:#fff8e1;
+  --green:#2e7d32;--green-l:#e8f5e9;
+  --teal:#00695c; --teal-l:#e0f2f1;
+  --bg:#f0f7ff;
+  --white:#fff;
+  --gray:#f5f7fa; --gray2:#eceff1;
+  --text:#1a237e; --text2:#37474f; --muted:#78909c;
+  --border:#cfd8dc;
+  --sh:0 2px 12px rgba(21,101,192,.12);
+  --sh-lg:0 6px 28px rgba(21,101,192,.18);
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{
+  font-family:'Nunito',sans-serif;
+  background:linear-gradient(160deg,#dceefb 0%,#fce4ec 45%,#e8f5e9 100%);
+  min-height:100vh;color:var(--text2);
+}
+
+/* HEADER */
+header{
+  background:linear-gradient(135deg,#0d47a1,#1565c0 50%,#1b5e20);
+  color:#fff;padding:42px 20px 38px;text-align:center;
+  position:relative;overflow:hidden;
+}
+header::before{
+  content:'';position:absolute;inset:0;opacity:.06;
+  background-image:radial-gradient(circle,#fff 1px,transparent 1px);
+  background-size:20px 20px;
+}
+header::after{
+  content:'';position:absolute;bottom:0;left:0;right:0;height:4px;
+  background:linear-gradient(90deg,#f9a825,#e53935,#43a047,#1976d2,#f9a825);
+}
+.trophy{font-size:56px;display:block;margin-bottom:10px;
+  animation:bob .7s ease-in-out infinite alternate;}
+@keyframes bob{from{transform:translateY(0)}to{transform:translateY(-8px)}}
+header h1{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:clamp(2rem,5vw,3.6rem);
+  letter-spacing:3px;text-shadow:0 2px 10px rgba(0,0,0,.3);
+  margin-bottom:6px;
+}
+header p{font-size:12px;letter-spacing:2.5px;text-transform:uppercase;color:rgba(255,255,255,.7);}
+
+/* NAV */
+nav{
+  background:#fff;display:flex;justify-content:center;gap:4px;
+  padding:10px 16px;position:sticky;top:0;z-index:100;
+  box-shadow:0 2px 14px rgba(0,0,0,.1);
+  border-bottom:3px solid var(--gold);
+}
+.tab-btn{
+  padding:9px 20px;border:2px solid transparent;
+  background:var(--gray);color:var(--muted);
+  border-radius:8px;cursor:pointer;
+  font-family:'Nunito',sans-serif;font-weight:800;font-size:13px;
+  transition:all .2s;display:flex;align-items:center;gap:5px;
+}
+.tab-btn:hover{background:var(--blue-l);color:var(--blue);border-color:var(--blue2);}
+.tab-btn.active{background:var(--blue);color:#fff;border-color:var(--blue);
+  box-shadow:0 3px 12px rgba(21,101,192,.35);}
+
+/* CONTENEDOR */
+.container{max-width:1040px;margin:28px auto;padding:0 16px 60px;}
+.content{display:none;}
+.content.active{display:block;animation:fadeUp .3s ease;}
+@keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+
+.stitle{display:flex;align-items:center;gap:10px;margin:32px 0 14px;}
+.stitle:first-child{margin-top:0;}
+.stbar{width:5px;height:26px;border-radius:3px;
+  background:linear-gradient(to bottom,var(--blue),var(--red));}
+.stitle h2{font-family:'Bebas Neue',sans-serif;font-size:20px;
+  letter-spacing:1.5px;color:var(--text);}
+
+/* JORNADAS */
+.j-card{background:#fff;border:1px solid var(--border);border-radius:14px;
+  margin-bottom:16px;overflow:hidden;box-shadow:var(--sh);transition:box-shadow .2s;}
+.j-card:hover{box-shadow:var(--sh-lg);}
+.j-header{
+  background:linear-gradient(90deg,var(--blue),var(--blue2));
+  padding:9px 20px;font-weight:800;font-size:13px;
+  letter-spacing:1.5px;text-transform:uppercase;color:#fff;
+  display:flex;align-items:center;gap:7px;
+}
+.j-header::before{content:'⚽';font-size:14px;}
+.partido{
+  display:grid;grid-template-columns:1fr 130px 1fr;
+  align-items:center;padding:12px 20px;
+  border-bottom:1px solid var(--gray2);transition:background .15s;
+}
+.partido:last-child{border-bottom:none;}
+.partido:hover{background:var(--blue-ll);}
+.eq-L{text-align:right;font-weight:700;font-size:14px;color:var(--text);}
+.eq-V{text-align:left;font-weight:700;font-size:14px;color:var(--text);}
+.score-box{display:flex;gap:6px;justify-content:center;align-items:center;}
+.score-box span{font-weight:900;font-size:16px;color:var(--muted);}
+input.sc{
+  width:52px;height:42px;text-align:center;
+  background:var(--blue-l);border:2px solid var(--blue2);
+  border-radius:8px;color:var(--blue);
+  font-family:'Nunito',sans-serif;font-weight:900;font-size:20px;
+  transition:all .15s;
+}
+input.sc:focus{outline:none;border-color:var(--gold);background:#fff;
+  box-shadow:0 0 0 3px rgba(249,168,37,.22);}
+input.sc::-webkit-inner-spin-button{opacity:.3;}
+
+/* TABLA POSICIONES */
+.tabla-wrap{background:#fff;border:1px solid var(--border);
+  border-radius:14px;overflow:hidden;box-shadow:var(--sh);margin-top:4px;}
+.tabla-wrap table{width:100%;border-collapse:collapse;}
+.tabla-wrap thead th{
+  background:linear-gradient(90deg,var(--blue),var(--blue2));
+  color:#fff;padding:12px 8px;
+  font-size:11px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;
+}
+.tabla-wrap thead th:first-child{text-align:left;padding-left:16px;}
+.tabla-wrap tbody tr{border-bottom:1px solid var(--gray2);transition:background .15s;}
+.tabla-wrap tbody tr:last-child{border-bottom:none;}
+.tabla-wrap tbody tr:hover{background:var(--blue-l);}
+.tabla-wrap tbody td{padding:10px 8px;text-align:center;font-size:14px;}
+.tabla-wrap tbody td:first-child{text-align:left;padding-left:12px;font-weight:800;font-size:14px;color:var(--text);}
+.pts-v{font-weight:900;font-size:16px;color:var(--blue);}
+.pos-b{display:inline-flex;align-items:center;justify-content:center;
+  width:26px;height:26px;border-radius:50%;font-weight:900;font-size:12px;
+  margin-right:4px;border:2px solid;}
+.p1{background:var(--gold-l);color:var(--gold);border-color:var(--gold);}
+.p2{background:var(--gray2);color:#546e7a;border-color:#90a4ae;}
+.p3{background:#fbe9e7;color:#bf360c;border-color:#ff7043;}
+
+/* BADGE AUTOMÁTICO */
+.auto-badge{
+  display:inline-flex;align-items:center;gap:6px;
+  background:var(--green-l);border:1px solid #a5d6a7;
+  border-radius:20px;padding:5px 14px;
+  font-size:11px;font-weight:800;color:var(--green);
+  letter-spacing:.3px;margin-bottom:14px;
+}
+.pulse{width:7px;height:7px;border-radius:50%;background:var(--green);
+  display:inline-block;animation:pl 1.2s ease infinite;}
+@keyframes pl{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.6)}}
+
+/* INDIVIDUALES */
+.indiv-form{
+  background:#fff;border:1px solid var(--border);border-radius:14px;
+  padding:18px;margin-bottom:20px;box-shadow:var(--sh);
+  display:flex;gap:10px;align-items:flex-end;flex-wrap:wrap;
+}
+.igrp{display:flex;flex-direction:column;gap:4px;}
+.igrp label{font-size:11px;font-weight:800;text-transform:uppercase;
+  letter-spacing:.8px;color:var(--muted);}
+.igrp.grow{flex:1;min-width:180px;}
+.inp-wrap{position:relative;}
+input.ti{
+  width:100%;background:var(--gray);border:2px solid var(--border);
+  border-radius:8px;padding:11px 14px;
+  font-family:'Nunito',sans-serif;font-size:14px;font-weight:700;color:var(--text);
+  transition:all .15s;
+}
+input.ti:focus{outline:none;background:#fff;border-color:var(--blue2);
+  box-shadow:0 0 0 3px rgba(25,118,210,.14);}
+input.ti::placeholder{color:var(--muted);font-weight:400;}
+
+/* AUTOCOMPLETE */
+.ac{
+  position:absolute;top:calc(100% + 4px);left:0;right:0;
+  background:#fff;border:2px solid var(--blue2);border-radius:10px;
+  box-shadow:0 8px 28px rgba(21,101,192,.18);
+  z-index:300;overflow:hidden;max-height:200px;overflow-y:auto;
+}
+.ac div{
+  padding:10px 14px;cursor:pointer;font-size:14px;font-weight:600;
+  border-bottom:1px solid var(--gray2);transition:background .12s;
+  display:flex;align-items:center;gap:7px;color:var(--text2);
+}
+.ac div:last-child{border-bottom:none;}
+.ac div::before{content:'👤';font-size:12px;}
+.ac div:hover,.ac div.sel{background:var(--blue-l);color:var(--blue);}
+.ac div em{font-style:normal;color:var(--red);font-weight:900;}
+
+input.ni{
+  width:110px;background:var(--gray);border:2px solid var(--border);
+  border-radius:8px;padding:11px;
+  font-family:'Nunito',sans-serif;font-size:18px;font-weight:900;
+  color:var(--blue);text-align:center;transition:all .15s;
+}
+input.ni:focus{outline:none;background:#fff;border-color:var(--gold);
+  box-shadow:0 0 0 3px rgba(249,168,37,.2);}
+input.ni::placeholder{font-size:12px;color:var(--muted);font-weight:400;}
+.btn-add{
+  padding:11px 22px;
+  background:linear-gradient(135deg,var(--green),#43a047);
+  color:#fff;border:none;border-radius:8px;
+  font-family:'Nunito',sans-serif;font-weight:900;font-size:14px;
+  cursor:pointer;transition:filter .15s,transform .1s;white-space:nowrap;
+  box-shadow:0 3px 10px rgba(46,125,50,.28);
+}
+.btn-add:hover{filter:brightness(1.08);}
+.btn-add:active{transform:scale(.97);}
+
+/* RANKING */
+.rank-wrap{background:#fff;border:1px solid var(--border);
+  border-radius:14px;overflow:hidden;box-shadow:var(--sh);}
+.rank-wrap table{width:100%;border-collapse:collapse;}
+.rank-wrap thead th{
+  background:linear-gradient(90deg,var(--teal),#00897b);
+  color:#fff;padding:11px 14px;
+  font-size:11px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;
+}
+.rank-wrap thead th:nth-child(2){text-align:left;}
+.rank-wrap tbody tr{border-bottom:1px solid var(--gray2);transition:background .15s;}
+.rank-wrap tbody tr:last-child{border-bottom:none;}
+.rank-wrap tbody tr:hover{background:var(--teal-l);}
+.rank-wrap tbody td{padding:11px 14px;text-align:center;font-size:14px;}
+.rank-wrap tbody td:nth-child(2){text-align:left;font-weight:700;}
+.poc{width:34px;height:34px;border-radius:50%;display:flex;
+  align-items:center;justify-content:center;
+  font-weight:900;font-size:14px;margin:0 auto;
+  border:2px solid var(--border);background:var(--gray2);color:var(--muted);}
+.poc-1{background:var(--gold-l);border-color:var(--gold);color:var(--gold);}
+.poc-2{background:#eceff1;border-color:#90a4ae;color:#546e7a;}
+.poc-3{background:#fbe9e7;border-color:#ff7043;color:#bf360c;}
+.vbig{font-weight:900;font-size:20px;}
+.vgol{color:var(--red);}.vpor{color:var(--teal);}
+.btn-del{
+  background:var(--red-l);border:1px solid #ef9a9a;color:var(--red);
+  border-radius:6px;padding:5px 11px;cursor:pointer;
+  font-weight:800;font-size:12px;transition:all .15s;
+}
+.btn-del:hover{background:var(--red);color:#fff;border-color:var(--red);}
+
+.hint-chip{
+  display:inline-flex;align-items:center;gap:5px;
+  background:var(--gold-l);border:1px solid var(--gold);
+  border-radius:20px;padding:4px 12px;
+  font-size:11px;font-weight:800;color:#e65100;
+  letter-spacing:.3px;margin-bottom:14px;
+}
+.empty{text-align:center;padding:40px;color:var(--muted);font-size:14px;}
+.empty div{font-size:40px;margin-bottom:8px;}
+.btn-reset{
+  display:flex;align-items:center;gap:8px;
+  background:#fff;border:2px solid var(--red);color:var(--red);
+  padding:11px 26px;border-radius:50px;cursor:pointer;
+  font-family:'Nunito',sans-serif;font-weight:900;font-size:13px;
+  margin:44px auto 0;transition:all .2s;
+  box-shadow:0 2px 8px rgba(229,57,53,.14);
+}
+.btn-reset:hover{background:var(--red);color:#fff;box-shadow:0 4px 16px rgba(229,57,53,.34);}
+.tab-btn.btn-export{
+  background:linear-gradient(135deg,var(--green),#43a047);
+  color:#fff;border-color:var(--green);
+  box-shadow:0 3px 10px rgba(46,125,50,.28);
+}
+.tab-btn.btn-export:hover{filter:brightness(1.08);color:#fff;background:linear-gradient(135deg,var(--green),#43a047);}
+::-webkit-scrollbar{width:5px;height:5px;}
+::-webkit-scrollbar-track{background:var(--gray);}
+::-webkit-scrollbar-thumb{background:var(--border);border-radius:3px;}
+</style>
+</head>
+<body>
+
+<header>
+  <span class="trophy">🏆</span>
+  <h1>Mundial Abraham A. Cerezo</h1>
+  <p>Jornadas · Tablas automáticas · Goleadores · Porteros</p>
+</header>
+
+<nav>
+  <button class="tab-btn active" onclick="tab('res',this)">⚽ Jornadas</button>
+  <button class="tab-btn" onclick="tab('tab',this)">📊 Tablas</button>
+  <button class="tab-btn" onclick="tab('gol',this)">👟 Goleadores</button>
+  <button class="tab-btn" onclick="tab('por',this)">🧤 Portero Menos Vencido</button>
+  <button class="tab-btn btn-export" onclick="exportarHTML()">📥 Descargar actualización</button>
+</nav>
+
+<div class="container">
+
+  <div id="res" class="content active">
+    <div class="stitle"><div class="stbar"></div><h2>Categoría Menor — 1ro a 3ro</h2></div>
+    <div id="cont-menor"><div class="j-card"><div class="j-header">Jornada 1</div><div class="partido">
+        <div class="eq-L">1ro. A (Japón)</div>
+        <div class="score-box">
+          <input class="sc" type="number" min="0" value="3" placeholder="—" onchange="setRes('mn_j0_p0_L',this.value)">
+          <span>:</span>
+          <input class="sc" type="number" min="0" value="3" placeholder="—" onchange="setRes('mn_j0_p0_V',this.value)">
+        </div>
+        <div class="eq-V">3ro. B (Uruguay)</div>
+      </div><div class="partido">
+        <div class="eq-L">1ro. B (Ecuador)</div>
+        <div class="score-box">
+          <input class="sc" type="number" min="0" value="1" placeholder="—" onchange="setRes('mn_j0_p1_L',this.value)">
+          <span>:</span>
+          <input class="sc" type="number" min="0" value="1" placeholder="—" onchange="setRes('mn_j0_p1_V',this.value)">
+        </div>
+        <div class="eq-V">3ro. A (Brasil)</div>
+      </div><div class="partido">
+        <div class="eq-L">2do. A (Canadá)</div>
+        <div class="score-box">
+          <input class="sc" type="number" min="0" value="" placeholder="—" onchange="setRes('mn_j0_p2_L',this.value)">
+          <span>:</span>
+          <input class="sc" type="number" min="0" value="" placeholder="—" onchange="setRes('mn_j0_p2_V',this.value)">
+        </div>
+        <div class="eq-V">2do. B (Alemania)</div>
+      </div></div><div class="j-card"><div class="j-header">Jornada 2</div><div class="partido">
+        <div class="eq-L">1ro. A (Japón)</div>
+        <div class="score-box">
+          <input class="sc" type="number" min="0" value="" placeholder="—" onchange="setRes('mn_j1_p0_L',this.value)">
+          <span>:</span>
+          <input class="sc" type="number" min="0" value="" placeholder="—" onchange="setRes('mn_j1_p0_V',this.value)">
+        </div>
+        <div class="eq-V">3ro. A (Brasil)</div>
+      </div><div class="partido">
+        <div class="eq-L">3ro. B (Uruguay)</div>
+        <div class="score-box">
+          <input class="sc" type="number" min="0" value="" placeholder="—" onchange="setRes('mn_j1_p1_L',this.value)">
+          <span>:</span>
+          <input class="sc" type="number" min="0" value="" placeholder="—" onchange="setRes('mn_j1_p1_V',this.value)">
+        </div>
+        <div class="eq-V">2do. B (Alemania)</div>
+      </div><div class="partido">
+        <div class="eq-L">1ro. B (Ecuador)</div>
+        <div class="score-box">
+          <input class="sc" type="number" min="0" value="" placeholder="—" onchange="setRes('mn_j1_p2_L',this.value)">
+          <span>:</span>
+          <input class="sc" type="number" min="0" value="" placeholder="—" onchange="setRes('mn_j1_p2_V',this.value)">
+        </div>
+        <div class="eq-V">2do. A (Canadá)</div>
+      </div></div><div class="j-card"><div class="j-header">Jornada 3</div><div class="partido">
+        <div class="eq-L">1ro. A (Japón)</div>
+        <div class="score-box">
+          <input class="sc" type="number" min="0" value="" placeholder="—" onchange="setRes('mn_j2_p0_L',this.value)">
+          <span>:</span>
+          <input class="sc" type="number" min="0" value="" placeholder="—" onchange="setRes('mn_j2_p0_V',this.value)">
+        </div>
+        <div class="eq-V">2do. B (Alemania)</div>
+      </div><div class="partido">
+        <div class="eq-L">3ro. A (Brasil)</div>
+        <div class="score-box">
+          <input class="sc" type="number" min="0" value="" placeholder="—" onchange="setRes('mn_j2_p1_L',this.value)">
+          <span>:</span>
+          <input class="sc" type="number" min="0" value="" placeholder="—" onchange="setRes('mn_j2_p1_V',this.value)">
+        </div>
+        <div class="eq-V">2do. A (Canadá)</div>
+      </div><div class="partido">
+        <div class="eq-L">3ro. B (Uruguay)</div>
+        <div class="score-box">
+          <input class="sc" type="number" min="0" value="" placeholder="—" onchange="setRes('mn_j2_p2_L',this.value)">
+          <span>:</span>
+          <input class="sc" type="number" min="0" value="" placeholder="—" onchange="setRes('mn_j2_p2_V',this.value)">
+        </div>
+        <div class="eq-V">1ro. B (Ecuador)</div>
+      </div></div><div class="j-card"><div class="j-header">Jornada 4</div><div class="partido">
+        <div class="eq-L">1ro. A (Japón)</div>
+        <div class="score-box">
+          <input class="sc" type="number" min="0" value="" placeholder="—" onchange="setRes('mn_j3_p0_L',this.value)">
+          <span>:</span>
+          <input class="sc" type="number" min="0" value="" placeholder="—" onchange="setRes('mn_j3_p0_V',this.value)">
+        </div>
+        <div class="eq-V">2do. A (Canadá)</div>
+      </div><div class="partido">
+        <div class="eq-L">2do. B (Alemania)</div>
+        <div class="score-box">
+          <input class="sc" type="number" min="0" value="" placeholder="—" onchange="setRes('mn_j3_p1_L',this.value)">
+          <span>:</span>
+          <input class="sc" type="number" min="0" value="" placeholder="—" onchange="setRes('mn_j3_p1_V',this.value)">
+        </div>
+        <div class="eq-V">1ro. B (Ecuador)</div>
+      </div><div class="partido">
+        <div class="eq-L">3ro. A (Brasil)</div>
+        <div class="score-box">
+          <input class="sc" type="number" min="0" value="" placeholder="—" onchange="setRes('mn_j3_p2_L',this.value)">
+          <span>:</span>
+          <input class="sc" type="number" min="0" value="" placeholder="—" onchange="setRes('mn_j3_p2_V',this.value)">
+        </div>
+        <div class="eq-V">3ro. B (Uruguay)</div>
+      </div></div><div class="j-card"><div class="j-header">Jornada 5</div><div class="partido">
+        <div class="eq-L">1ro. A (Japón)</div>
+        <div class="score-box">
+          <input class="sc" type="number" min="0" value="" placeholder="—" onchange="setRes('mn_j4_p0_L',this.value)">
+          <span>:</span>
+          <input class="sc" type="number" min="0" value="" placeholder="—" onchange="setRes('mn_j4_p0_V',this.value)">
+        </div>
+        <div class="eq-V">1ro. B (Ecuador)</div>
+      </div><div class="partido">
+        <div class="eq-L">2do. A (Canadá)</div>
+        <div class="score-box">
+          <input class="sc" type="number" min="0" value="" placeholder="—" onchange="setRes('mn_j4_p1_L',this.value)">
+          <span>:</span>
+          <input class="sc" type="number" min="0" value="" placeholder="—" onchange="setRes('mn_j4_p1_V',this.value)">
+        </div>
+        <div class="eq-V">3ro. B (Uruguay)</div>
+      </div><div class="partido">
+        <div class="eq-L">2do. B (Alemania)</div>
+        <div class="score-box">
+          <input class="sc" type="number" min="0" value="" placeholder="—" onchange="setRes('mn_j4_p2_L',this.value)">
+          <span>:</span>
+          <input class="sc" type="number" min="0" value="" placeholder="—" onchange="setRes('mn_j4_p2_V',this.value)">
+        </div>
+        <div class="eq-V">3ro. A (Brasil)</div>
+      </div></div></div>
+    <div class="stitle"><div class="stbar"></div><h2>Categoría Mayor — 4to a 6to</h2></div>
+    <div id="cont-mayor"><div class="j-card"><div class="j-header">Jornada 1</div><div class="partido">
+        <div class="eq-L">4to. A (Portugal)</div>
+        <div class="score-box">
+          <input class="sc" type="number" min="0" value="" placeholder="—" onchange="setRes('my_j0_p0_L',this.value)">
+          <span>:</span>
+          <input class="sc" type="number" min="0" value="" placeholder="—" onchange="setRes('my_j0_p0_V',this.value)">
+        </div>
+        <div class="eq-V">6to. B (Colombia)</div>
+      </div><div class="partido">
+        <div class="eq-L">4to. C (España)</div>
+        <div class="score-box">
+          <input class="sc" type="number" min="0" value="" placeholder="—" onchange="setRes('my_j0_p1_L',this.value)">
+          <span>:</span>
+          <input class="sc" type="number" min="0" value="" placeholder="—" onchange="setRes('my_j0_p1_V',this.value)">
+        </div>
+        <div class="eq-V">6to. A (EE.UU.)</div>
+      </div><div class="partido">
+        <div class="eq-L">5to. A (Panamá)</div>
+        <div class="score-box">
+          <input class="sc" type="number" min="0" value="" placeholder="—" onchange="setRes('my_j0_p2_L',this.value)">
+          <span>:</span>
+          <input class="sc" type="number" min="0" value="" placeholder="—" onchange="setRes('my_j0_p2_V',this.value)">
+        </div>
+        <div class="eq-V">5to. B (Francia)</div>
+      </div></div><div class="j-card"><div class="j-header">Jornada 2</div><div class="partido">
+        <div class="eq-L">4to. B (México)</div>
+        <div class="score-box">
+          <input class="sc" type="number" min="0" value="" placeholder="—" onchange="setRes('my_j1_p0_L',this.value)">
+          <span>:</span>
+          <input class="sc" type="number" min="0" value="" placeholder="—" onchange="setRes('my_j1_p0_V',this.value)">
+        </div>
+        <div class="eq-V">6to. B (Colombia)</div>
+      </div><div class="partido">
+        <div class="eq-L">4to. A (Portugal)</div>
+        <div class="score-box">
+          <input class="sc" type="number" min="0" value="" placeholder="—" onchange="setRes('my_j1_p1_L',this.value)">
+          <span>:</span>
+          <input class="sc" type="number" min="0" value="" placeholder="—" onchange="setRes('my_j1_p1_V',this.value)">
+        </div>
+        <div class="eq-V">5to. B (Francia)</div>
+      </div><div class="partido">
+        <div class="eq-L">4to. C (España)</div>
+        <div class="score-box">
+          <input class="sc" type="number" min="0" value="" placeholder="—" onchange="setRes('my_j1_p2_L',this.value)">
+          <span>:</span>
+          <input class="sc" type="number" min="0" value="" placeholder="—" onchange="setRes('my_j1_p2_V',this.value)">
+        </div>
+        <div class="eq-V">5to. A (Panamá)</div>
+      </div></div><div class="j-card"><div class="j-header">Jornada 3</div><div class="partido">
+        <div class="eq-L">4to. B (México)</div>
+        <div class="score-box">
+          <input class="sc" type="number" min="0" value="" placeholder="—" onchange="setRes('my_j2_p0_L',this.value)">
+          <span>:</span>
+          <input class="sc" type="number" min="0" value="" placeholder="—" onchange="setRes('my_j2_p0_V',this.value)">
+        </div>
+        <div class="eq-V">6to. A (EE.UU.)</div>
+      </div><div class="partido">
+        <div class="eq-L">6to. B (Colombia)</div>
+        <div class="score-box">
+          <input class="sc" type="number" min="0" value="" placeholder="—" onchange="setRes('my_j2_p1_L',this.value)">
+          <span>:</span>
+          <input class="sc" type="number" min="0" value="" placeholder="—" onchange="setRes('my_j2_p1_V',this.value)">
+        </div>
+        <div class="eq-V">5to. B (Francia)</div>
+      </div><div class="partido">
+        <div class="eq-L">4to. A (Portugal)</div>
+        <div class="score-box">
+          <input class="sc" type="number" min="0" value="" placeholder="—" onchange="setRes('my_j2_p2_L',this.value)">
+          <span>:</span>
+          <input class="sc" type="number" min="0" value="" placeholder="—" onchange="setRes('my_j2_p2_V',this.value)">
+        </div>
+        <div class="eq-V">4to. C (España)</div>
+      </div></div><div class="j-card"><div class="j-header">Jornada 4</div><div class="partido">
+        <div class="eq-L">4to. B (México)</div>
+        <div class="score-box">
+          <input class="sc" type="number" min="0" value="" placeholder="—" onchange="setRes('my_j3_p0_L',this.value)">
+          <span>:</span>
+          <input class="sc" type="number" min="0" value="" placeholder="—" onchange="setRes('my_j3_p0_V',this.value)">
+        </div>
+        <div class="eq-V">5to. B (Francia)</div>
+      </div><div class="partido">
+        <div class="eq-L">6to. A (EE.UU.)</div>
+        <div class="score-box">
+          <input class="sc" type="number" min="0" value="" placeholder="—" onchange="setRes('my_j3_p1_L',this.value)">
+          <span>:</span>
+          <input class="sc" type="number" min="0" value="" placeholder="—" onchange="setRes('my_j3_p1_V',this.value)">
+        </div>
+        <div class="eq-V">5to. A (Panamá)</div>
+      </div><div class="partido">
+        <div class="eq-L">6to. B (Colombia)</div>
+        <div class="score-box">
+          <input class="sc" type="number" min="0" value="" placeholder="—" onchange="setRes('my_j3_p2_L',this.value)">
+          <span>:</span>
+          <input class="sc" type="number" min="0" value="" placeholder="—" onchange="setRes('my_j3_p2_V',this.value)">
+        </div>
+        <div class="eq-V">4to. C (España)</div>
+      </div></div><div class="j-card"><div class="j-header">Jornada 5</div><div class="partido">
+        <div class="eq-L">4to. B (México)</div>
+        <div class="score-box">
+          <input class="sc" type="number" min="0" value="" placeholder="—" onchange="setRes('my_j4_p0_L',this.value)">
+          <span>:</span>
+          <input class="sc" type="number" min="0" value="" placeholder="—" onchange="setRes('my_j4_p0_V',this.value)">
+        </div>
+        <div class="eq-V">5to. A (Panamá)</div>
+      </div><div class="partido">
+        <div class="eq-L">5to. B (Francia)</div>
+        <div class="score-box">
+          <input class="sc" type="number" min="0" value="" placeholder="—" onchange="setRes('my_j4_p1_L',this.value)">
+          <span>:</span>
+          <input class="sc" type="number" min="0" value="" placeholder="—" onchange="setRes('my_j4_p1_V',this.value)">
+        </div>
+        <div class="eq-V">4to. C (España)</div>
+      </div><div class="partido">
+        <div class="eq-L">6to. A (EE.UU.)</div>
+        <div class="score-box">
+          <input class="sc" type="number" min="0" value="" placeholder="—" onchange="setRes('my_j4_p2_L',this.value)">
+          <span>:</span>
+          <input class="sc" type="number" min="0" value="" placeholder="—" onchange="setRes('my_j4_p2_V',this.value)">
+        </div>
+        <div class="eq-V">4to. A (Portugal)</div>
+      </div></div><div class="j-card"><div class="j-header">Jornada 6</div><div class="partido">
+        <div class="eq-L">4to. B (México)</div>
+        <div class="score-box">
+          <input class="sc" type="number" min="0" value="" placeholder="—" onchange="setRes('my_j5_p0_L',this.value)">
+          <span>:</span>
+          <input class="sc" type="number" min="0" value="" placeholder="—" onchange="setRes('my_j5_p0_V',this.value)">
+        </div>
+        <div class="eq-V">4to. C (España)</div>
+      </div><div class="partido">
+        <div class="eq-L">5to. A (Panamá)</div>
+        <div class="score-box">
+          <input class="sc" type="number" min="0" value="" placeholder="—" onchange="setRes('my_j5_p1_L',this.value)">
+          <span>:</span>
+          <input class="sc" type="number" min="0" value="" placeholder="—" onchange="setRes('my_j5_p1_V',this.value)">
+        </div>
+        <div class="eq-V">4to. A (Portugal)</div>
+      </div><div class="partido">
+        <div class="eq-L">6to. A (EE.UU.)</div>
+        <div class="score-box">
+          <input class="sc" type="number" min="0" value="" placeholder="—" onchange="setRes('my_j5_p2_L',this.value)">
+          <span>:</span>
+          <input class="sc" type="number" min="0" value="" placeholder="—" onchange="setRes('my_j5_p2_V',this.value)">
+        </div>
+        <div class="eq-V">6to. B (Colombia)</div>
+      </div></div><div class="j-card"><div class="j-header">Jornada 7</div><div class="partido">
+        <div class="eq-L">4to. B (México)</div>
+        <div class="score-box">
+          <input class="sc" type="number" min="0" value="" placeholder="—" onchange="setRes('my_j6_p0_L',this.value)">
+          <span>:</span>
+          <input class="sc" type="number" min="0" value="" placeholder="—" onchange="setRes('my_j6_p0_V',this.value)">
+        </div>
+        <div class="eq-V">4to. A (Portugal)</div>
+      </div><div class="partido">
+        <div class="eq-L">5to. A (Panamá)</div>
+        <div class="score-box">
+          <input class="sc" type="number" min="0" value="" placeholder="—" onchange="setRes('my_j6_p1_L',this.value)">
+          <span>:</span>
+          <input class="sc" type="number" min="0" value="" placeholder="—" onchange="setRes('my_j6_p1_V',this.value)">
+        </div>
+        <div class="eq-V">6to. B (Colombia)</div>
+      </div><div class="partido">
+        <div class="eq-L">5to. B (Francia)</div>
+        <div class="score-box">
+          <input class="sc" type="number" min="0" value="" placeholder="—" onchange="setRes('my_j6_p2_L',this.value)">
+          <span>:</span>
+          <input class="sc" type="number" min="0" value="" placeholder="—" onchange="setRes('my_j6_p2_V',this.value)">
+        </div>
+        <div class="eq-V">6to. A (EE.UU.)</div>
+      </div></div></div>
+  </div>
+
+  <div id="tab" class="content">
+    <div class="auto-badge"><span class="pulse"></span> Se actualiza automáticamente con cada resultado</div>
+    <div class="stitle"><div class="stbar"></div><h2>Tabla Categoría Menor</h2></div>
+    <div class="tabla-wrap"><table>
+      <thead><tr><th>Equipo</th><th>PJ</th><th>PG</th><th>PE</th><th>PP</th><th>GF</th><th>GC</th><th>DIF</th><th>PTS</th></tr></thead>
+      <tbody id="b-men"><tr>
+      <td><span class="pos-b p1">🥇</span>1ro. A (Japón)</td>
+      <td>1</td><td>0</td><td>1</td><td>0</td>
+      <td>3</td><td>3</td>
+      <td style="font-weight:800;color:var(--muted)">0</td>
+      <td><span class="pts-v">1</span></td>
+    </tr><tr>
+      <td><span class="pos-b p2">🥈</span>3ro. B (Uruguay)</td>
+      <td>1</td><td>0</td><td>1</td><td>0</td>
+      <td>3</td><td>3</td>
+      <td style="font-weight:800;color:var(--muted)">0</td>
+      <td><span class="pts-v">1</span></td>
+    </tr><tr>
+      <td><span class="pos-b p3">🥉</span>1ro. B (Ecuador)</td>
+      <td>1</td><td>0</td><td>1</td><td>0</td>
+      <td>1</td><td>1</td>
+      <td style="font-weight:800;color:var(--muted)">0</td>
+      <td><span class="pts-v">1</span></td>
+    </tr><tr>
+      <td><span class="pos-b ">4</span>3ro. A (Brasil)</td>
+      <td>1</td><td>0</td><td>1</td><td>0</td>
+      <td>1</td><td>1</td>
+      <td style="font-weight:800;color:var(--muted)">0</td>
+      <td><span class="pts-v">1</span></td>
+    </tr><tr>
+      <td><span class="pos-b ">5</span>2do. A (Canadá)</td>
+      <td>0</td><td>0</td><td>0</td><td>0</td>
+      <td>0</td><td>0</td>
+      <td style="font-weight:800;color:var(--muted)">0</td>
+      <td><span class="pts-v">0</span></td>
+    </tr><tr>
+      <td><span class="pos-b ">6</span>2do. B (Alemania)</td>
+      <td>0</td><td>0</td><td>0</td><td>0</td>
+      <td>0</td><td>0</td>
+      <td style="font-weight:800;color:var(--muted)">0</td>
+      <td><span class="pts-v">0</span></td>
+    </tr></tbody>
+    </table></div>
+    <div class="stitle"><div class="stbar"></div><h2>Tabla Categoría Mayor</h2></div>
+    <div class="tabla-wrap"><table>
+      <thead><tr><th>Equipo</th><th>PJ</th><th>PG</th><th>PE</th><th>PP</th><th>GF</th><th>GC</th><th>DIF</th><th>PTS</th></tr></thead>
+      <tbody id="b-may"><tr>
+      <td><span class="pos-b p1">🥇</span>4to. B (México)</td>
+      <td>0</td><td>0</td><td>0</td><td>0</td>
+      <td>0</td><td>0</td>
+      <td style="font-weight:800;color:var(--muted)">0</td>
+      <td><span class="pts-v">0</span></td>
+    </tr><tr>
+      <td><span class="pos-b p2">🥈</span>4to. A (Portugal)</td>
+      <td>0</td><td>0</td><td>0</td><td>0</td>
+      <td>0</td><td>0</td>
+      <td style="font-weight:800;color:var(--muted)">0</td>
+      <td><span class="pts-v">0</span></td>
+    </tr><tr>
+      <td><span class="pos-b p3">🥉</span>4to. C (España)</td>
+      <td>0</td><td>0</td><td>0</td><td>0</td>
+      <td>0</td><td>0</td>
+      <td style="font-weight:800;color:var(--muted)">0</td>
+      <td><span class="pts-v">0</span></td>
+    </tr><tr>
+      <td><span class="pos-b ">4</span>5to. A (Panamá)</td>
+      <td>0</td><td>0</td><td>0</td><td>0</td>
+      <td>0</td><td>0</td>
+      <td style="font-weight:800;color:var(--muted)">0</td>
+      <td><span class="pts-v">0</span></td>
+    </tr><tr>
+      <td><span class="pos-b ">5</span>5to. B (Francia)</td>
+      <td>0</td><td>0</td><td>0</td><td>0</td>
+      <td>0</td><td>0</td>
+      <td style="font-weight:800;color:var(--muted)">0</td>
+      <td><span class="pts-v">0</span></td>
+    </tr><tr>
+      <td><span class="pos-b ">6</span>6to. A (EE.UU.)</td>
+      <td>0</td><td>0</td><td>0</td><td>0</td>
+      <td>0</td><td>0</td>
+      <td style="font-weight:800;color:var(--muted)">0</td>
+      <td><span class="pts-v">0</span></td>
+    </tr><tr>
+      <td><span class="pos-b ">7</span>6to. B (Colombia)</td>
+      <td>0</td><td>0</td><td>0</td><td>0</td>
+      <td>0</td><td>0</td>
+      <td style="font-weight:800;color:var(--muted)">0</td>
+      <td><span class="pts-v">0</span></td>
+    </tr></tbody>
+    </table></div>
+  </div>
+
+  <div id="gol" class="content">
+    <div class="stitle"><div class="stbar"></div><h2>Tabla de Goleadores</h2></div>
+    <div class="hint-chip">✦ Autocompleta al escribir — suma goles si ya existe el jugador</div>
+    <div class="indiv-form">
+      <div class="igrp grow">
+        <label>Nombre del goleador</label>
+        <div class="inp-wrap">
+          <input class="ti" type="text" id="gn" placeholder="Escribe el nombre…" autocomplete="off" oninput="showAC('gol')" onkeydown="acKey(event,'gol')">
+          <div class="ac" id="ac-gol" style="display:none;"></div>
+        </div>
+      </div>
+      <div class="igrp"><label>Goles</label>
+        <input class="ni" type="number" id="gc" placeholder="0" min="0"></div>
+      <div class="igrp"><label>&nbsp;</label>
+        <button class="btn-add" onclick="addInd('gol')">＋ Añadir</button></div>
+    </div>
+    <div class="rank-wrap" id="wrap-gol"><div class="empty"><div>👟</div>Sin goleadores aún</div></div>
+  </div>
+
+  <div id="por" class="content">
+    <div class="stitle"><div class="stbar"></div><h2>Portero Menos Vencido</h2></div>
+    <div class="hint-chip">✦ Autocompleta al escribir — suma goles si ya existe el portero</div>
+    <div class="indiv-form">
+      <div class="igrp grow">
+        <label>Nombre del portero</label>
+        <div class="inp-wrap">
+          <input class="ti" type="text" id="pn" placeholder="Escribe el nombre…" autocomplete="off" oninput="showAC('por')" onkeydown="acKey(event,'por')">
+          <div class="ac" id="ac-por" style="display:none;"></div>
+        </div>
+      </div>
+      <div class="igrp"><label>Goles recibidos</label>
+        <input class="ni" type="number" id="pc" placeholder="0" min="0"></div>
+      <div class="igrp"><label>&nbsp;</label>
+        <button class="btn-add" onclick="addInd('por')">＋ Añadir</button></div>
+    </div>
+    <div class="rank-wrap" id="wrap-por"><div class="empty"><div>🧤</div>Sin porteros menos vencidos aún</div></div>
+  </div>
+
+  <button class="btn-reset" onclick="hardReset()">⚠️ Reiniciar todo el torneo</button>
+</div>
+
+<script>
+const EQ_MEN=["1ro. A (Japón)","1ro. B (Ecuador)","2do. A (Canadá)","2do. B (Alemania)","3ro. A (Brasil)","3ro. B (Uruguay)"];
+// Orden ajustado: partido inaugural Jornada 1 → Japón vs Uruguay (pos 0 vs pos 5)
+const EQ_MAY=["4to. B (México)","4to. A (Portugal)","4to. C (España)","5to. A (Panamá)","5to. B (Francia)","6to. A (EE.UU.)","6to. B (Colombia)"];
+
+// Fixture round-robin
+function fixture(eqs){
+  const es=eqs.length%2===0?[...eqs]:[...eqs,'BYE'];
+  const N=es.length, rondas=N-1, fix=[];
+  for(let r=0;r<rondas;r++){
+    const j=[];
+    for(let i=0;i<N/2;i++){
+      if(es[i]!=='BYE'&&es[N-1-i]!=='BYE') j.push([es[i],es[N-1-i]]);
+    }
+    fix.push(j);
+    es.splice(1,0,es.pop());
+  }
+  return fix;
+}
+const FIX_MEN=fixture(EQ_MEN);
+const FIX_MAY=fixture(EQ_MAY);
+
+let db={"res":{"mn_j0_p0_L":3,"mn_j0_p0_V":3,"mn_j0_p1_L":1,"mn_j0_p1_V":1},"gol":[],"por":[]};
+const save=()=>localStorage.setItem('mundial_v8',JSON.stringify(db));
+
+// TABS
+function tab(id,btn){
+  document.querySelectorAll('.content').forEach(c=>c.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  btn.classList.add('active');
+  hideAllAC();
+  if(id==='tab') calcTablas();
+}
+
+// JORNADAS
+function renderJ(cid,fix,pref){
+  let h='';
+  fix.forEach((jornada,ji)=>{
+    h+=`<div class="j-card"><div class="j-header">Jornada ${ji+1}</div>`;
+    jornada.forEach((par,pi)=>{
+      const kL=`${pref}_j${ji}_p${pi}_L`, kV=`${pref}_j${ji}_p${pi}_V`;
+      const vL=db.res[kL]!==undefined?db.res[kL]:'';
+      const vV=db.res[kV]!==undefined?db.res[kV]:'';
+      h+=`<div class="partido">
+        <div class="eq-L">${par[0]}</div>
+        <div class="score-box">
+          <input class="sc" type="number" min="0" value="${vL}" placeholder="—"
+            onchange="setRes('${kL}',this.value)">
+          <span>:</span>
+          <input class="sc" type="number" min="0" value="${vV}" placeholder="—"
+            onchange="setRes('${kV}',this.value)">
+        </div>
+        <div class="eq-V">${par[1]}</div>
+      </div>`;
+    });
+    h+=`</div>`;
+  });
+  document.getElementById(cid).innerHTML=h;
+}
+
+function setRes(k,v){
+  if(v===''||v===null){delete db.res[k];}
+  else{db.res[k]=parseInt(v)||0;}
+  save();
+  calcTablas(); // actualización inmediata
+}
+
+// CÁLCULO AUTOMÁTICO DE TABLAS
+function calcTablas(){
+  renderTabAuto('b-men',EQ_MEN,FIX_MEN,'mn');
+  renderTabAuto('b-may',EQ_MAY,FIX_MAY,'my');
+}
+
+function renderTabAuto(tbid,eqs,fix,pref){
+  const s={};
+  eqs.forEach(e=>s[e]={pj:0,pg:0,pe:0,pp:0,gf:0,gc:0,pts:0});
+  fix.forEach((jornada,ji)=>{
+    jornada.forEach((par,pi)=>{
+      const kL=`${pref}_j${ji}_p${pi}_L`, kV=`${pref}_j${ji}_p${pi}_V`;
+      if(db.res[kL]===undefined||db.res[kV]===undefined) return;
+      const gL=parseInt(db.res[kL])||0, gV=parseInt(db.res[kV])||0;
+      const eL=par[0], eV=par[1];
+      s[eL].pj++;s[eV].pj++;
+      s[eL].gf+=gL;s[eL].gc+=gV;
+      s[eV].gf+=gV;s[eV].gc+=gL;
+      if(gL>gV){s[eL].pg++;s[eL].pts+=3;s[eV].pp++;}
+      else if(gL<gV){s[eV].pg++;s[eV].pts+=3;s[eL].pp++;}
+      else{s[eL].pe++;s[eL].pts+=1;s[eV].pe++;s[eV].pts+=1;}
+    });
+  });
+  const sorted=[...eqs].sort((a,b)=>{
+    if(s[b].pts!==s[a].pts) return s[b].pts-s[a].pts;
+    const da=s[a].gf-s[a].gc, db2=s[b].gf-s[b].gc;
+    if(db2!==da) return db2-da;
+    return s[b].gf-s[a].gf;
+  });
+  let h='';
+  sorted.forEach((e,i)=>{
+    const r=s[e], dg=r.gf-r.gc, pos=i+1;
+    const pc=pos===1?'p1':pos===2?'p2':pos===3?'p3':'';
+    const med=pos===1?'🥇':pos===2?'🥈':pos===3?'🥉':pos;
+    const dgCol=dg>0?'color:var(--green)':dg<0?'color:var(--red)':'color:var(--muted)';
+    h+=`<tr>
+      <td><span class="pos-b ${pc}">${med}</span>${e}</td>
+      <td>${r.pj}</td><td>${r.pg}</td><td>${r.pe}</td><td>${r.pp}</td>
+      <td>${r.gf}</td><td>${r.gc}</td>
+      <td style="font-weight:800;${dgCol}">${dg>0?'+':''}${dg}</td>
+      <td><span class="pts-v">${r.pts}</span></td>
+    </tr>`;
+  });
+  document.getElementById(tbid).innerHTML=h;
+}
+
+// AUTOCOMPLETE
+let acIdx={gol:-1,por:-1};
+const getNoms=t=>[...new Set(db[t].map(x=>x.n))].sort();
+
+function showAC(t){
+  const val=document.getElementById(t==='gol'?'gn':'pn').value.trim();
+  const lst=document.getElementById('ac-'+t);
+  acIdx[t]=-1;
+  if(!val){lst.style.display='none';return;}
+  const m=getNoms(t).filter(n=>n.toLowerCase().includes(val.toLowerCase()));
+  if(!m.length){lst.style.display='none';return;}
+  const re=new RegExp(`(${val.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')})`,'gi');
+  lst.innerHTML=m.map(n=>`<div data-n="${n}" onmousedown="selAC('${t}','${n}')">${n.replace(re,'<em>$1</em>')}</div>`).join('');
+  lst.style.display='block';
+}
+function selAC(t,n){
+  document.getElementById(t==='gol'?'gn':'pn').value=n;
+  hideAC(t);
+}
+function hideAC(t){document.getElementById('ac-'+t).style.display='none';acIdx[t]=-1;}
+function hideAllAC(){hideAC('gol');hideAC('por');}
+function acKey(e,t){
+  const lst=document.getElementById('ac-'+t);
+  const its=lst.querySelectorAll('div');
+  if(!its.length||lst.style.display==='none') return;
+  if(e.key==='ArrowDown'){e.preventDefault();acIdx[t]=Math.min(acIdx[t]+1,its.length-1);hAC(t,its);}
+  else if(e.key==='ArrowUp'){e.preventDefault();acIdx[t]=Math.max(acIdx[t]-1,0);hAC(t,its);}
+  else if(e.key==='Enter'&&acIdx[t]>=0){e.preventDefault();selAC(t,its[acIdx[t]].dataset.n);}
+  else if(e.key==='Escape') hideAC(t);
+}
+function hAC(t,its){
+  its.forEach((it,i)=>it.classList.toggle('sel',i===acIdx[t]));
+  if(acIdx[t]>=0) its[acIdx[t]].scrollIntoView({block:'nearest'});
+}
+document.addEventListener('click',e=>{if(!e.target.closest('.inp-wrap')) hideAllAC();});
+
+// INDIVIDUALES
+function addInd(t){
+  const nId=t==='gol'?'gn':'pn', vId=t==='gol'?'gc':'pc';
+  const n=document.getElementById(nId).value.trim().toUpperCase();
+  const v=parseInt(document.getElementById(vId).value)||0;
+  if(!n) return;
+  const ex=db[t].find(x=>x.n===n);
+  if(ex){ex.v=(parseInt(ex.v)||0)+v;}
+  else{db[t].push({n,v});}
+  save();
+  document.getElementById(nId).value='';
+  document.getElementById(vId).value='';
+  hideAC(t);
+  renderInd();
+}
+function delInd(t,i){db[t].splice(i,1);save();renderInd();}
+
+function renderInd(){
+  ['gol','por'].forEach(t=>{
+    const wrap=document.getElementById('wrap-'+t);
+    const data=[...db[t]].sort((a,b)=>{
+      const av=parseInt(a.v)||0,bv=parseInt(b.v)||0;
+      return t==='gol'?bv-av:av-bv;
+    });
+    if(!data.length){
+      wrap.innerHTML=`<div class="empty"><div>${t==='gol'?'👟':'🧤'}</div>Sin ${t==='gol'?'goleadores':'porteros menos vencidos'} aún</div>`;
+      return;
+    }
+    const lbl=t==='gol'?'Goles':'Goles Rec.';
+    const cls=t==='gol'?'vgol':'vpor';
+    wrap.innerHTML=`<table>
+      <thead><tr><th>#</th><th style="text-align:left">Nombre</th><th>${lbl}</th><th>Acción</th></tr></thead>
+      <tbody>${data.map((x,i)=>{
+        const oi=db[t].findIndex(d=>d.n===x.n);
+        const pc=i===0?'poc-1':i===1?'poc-2':i===2?'poc-3':'';
+        const med=i===0?'🥇':i===1?'🥈':i===2?'🥉':i+1;
+        return `<tr>
+          <td><div class="poc ${pc}">${med}</div></td>
+          <td>${x.n}</td>
+          <td><span class="vbig ${cls}">${x.v}</span></td>
+          <td><button class="btn-del" onclick="delInd('${t}',${oi})">✕ Quitar</button></td>
+        </tr>`;
+      }).join('')}</tbody>
+    </table>`;
+  });
+}
+
+function hardReset(){
+  if(confirm('¿Borrar TODOS los datos del torneo? No se puede deshacer.')){
+    localStorage.removeItem('mundial_v8');location.reload();
+  }
+}
+
+function exportarHTML(){
+  const datos = JSON.stringify(db);
+  const html = document.documentElement.outerHTML;
+  // Reemplazar la línea que lee localStorage con los datos actuales ya incrustados
+  const htmlFinal = html.replace(
+    /let db=JSON\.parse\(localStorage\.getItem\('mundial_v8'\)\)\|\|\{res:\{\},gol:\[\],por:\[\]\};/,
+    `let db=${datos};`
+  // En la versión exportada, quitar los botones de edición (inputs de marcador) y el botón exportar queda igual
+  );
+  const blob = new Blob([htmlFinal], {type:'text/html;charset=utf-8'});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  const fecha = new Date().toLocaleDateString('es-GT').replace(/\//g,'-');
+  a.href = url;
+  a.download = `Mundial_Cerezo_${fecha}.html`;
+  a.click();
+  URL.revokeObjectURL(url);
+}
+
+// INICIO
+renderJ('cont-menor',FIX_MEN,'mn');
+renderJ('cont-mayor',FIX_MAY,'my');
+calcTablas();
+renderInd();
+</script>
+
+</body></html>
