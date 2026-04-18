@@ -387,44 +387,86 @@ body.admin-mode .solo-admin-inline{display:inline-flex !important;}
   </div>
 
   <div id="gol" class="content">
-    <div class="stitle"><div class="stbar"></div><h2>Tabla de Goleadores</h2></div>
+    <!-- GOLEADORES MENOR -->
+    <div class="stitle"><div class="stbar"></div><h2>Goleadores — Categoría Menor</h2></div>
     <div class="hint-chip">✦ Autocompleta al escribir — suma goles si ya existe el jugador</div>
-    <div class="indiv-form solo-admin" id="form-gol">
+    <div class="indiv-form solo-admin" id="form-gol-men">
       <div class="igrp grow">
         <label>Nombre del goleador</label>
         <div class="inp-wrap">
-          <input class="ti" type="text" id="gn" placeholder="Escribe el nombre…"
-            autocomplete="off" oninput="showAC('gol')" onkeydown="acKey(event,'gol')">
-          <div class="ac" id="ac-gol" style="display:none;"></div>
+          <input class="ti" type="text" id="gn-men" placeholder="Escribe el nombre…"
+            autocomplete="off" oninput="showAC('golmen')" onkeydown="acKey(event,'golmen')">
+          <div class="ac" id="ac-golmen" style="display:none;"></div>
         </div>
       </div>
       <div class="igrp"><label>Goles</label>
-        <input class="ni" type="number" id="gc" placeholder="0" min="0"></div>
+        <input class="ni" type="number" id="gc-men" placeholder="0" min="0"></div>
       <div class="igrp"><label>&nbsp;</label>
-        <button class="btn-add" onclick="addInd('gol')">＋ Añadir</button></div>
+        <button class="btn-add" onclick="addInd('golmen')">＋ Añadir</button></div>
     </div>
-    <div class="rank-wrap" id="wrap-gol">
+    <div class="rank-wrap" id="wrap-golmen">
+      <div class="empty"><div>👟</div>Sin goleadores aún</div></div>
+
+    <!-- GOLEADORES MAYOR -->
+    <div class="stitle" style="margin-top:32px;"><div class="stbar"></div><h2>Goleadores — Categoría Mayor</h2></div>
+    <div class="hint-chip">✦ Autocompleta al escribir — suma goles si ya existe el jugador</div>
+    <div class="indiv-form solo-admin" id="form-gol-may">
+      <div class="igrp grow">
+        <label>Nombre del goleador</label>
+        <div class="inp-wrap">
+          <input class="ti" type="text" id="gn-may" placeholder="Escribe el nombre…"
+            autocomplete="off" oninput="showAC('golmay')" onkeydown="acKey(event,'golmay')">
+          <div class="ac" id="ac-golmay" style="display:none;"></div>
+        </div>
+      </div>
+      <div class="igrp"><label>Goles</label>
+        <input class="ni" type="number" id="gc-may" placeholder="0" min="0"></div>
+      <div class="igrp"><label>&nbsp;</label>
+        <button class="btn-add" onclick="addInd('golmay')">＋ Añadir</button></div>
+    </div>
+    <div class="rank-wrap" id="wrap-golmay">
       <div class="empty"><div>👟</div>Sin goleadores aún</div></div>
   </div>
 
   <div id="por" class="content">
-    <div class="stitle"><div class="stbar"></div><h2>Portero Menos Vencido</h2></div>
+    <!-- PORTEROS MENOR -->
+    <div class="stitle"><div class="stbar"></div><h2>Portero Menos Vencido — Categoría Menor</h2></div>
     <div class="hint-chip">✦ Autocompleta al escribir — suma goles si ya existe el portero</div>
-    <div class="indiv-form solo-admin" id="form-por">
+    <div class="indiv-form solo-admin" id="form-por-men">
       <div class="igrp grow">
         <label>Nombre del portero</label>
         <div class="inp-wrap">
-          <input class="ti" type="text" id="pn" placeholder="Escribe el nombre…"
-            autocomplete="off" oninput="showAC('por')" onkeydown="acKey(event,'por')">
-          <div class="ac" id="ac-por" style="display:none;"></div>
+          <input class="ti" type="text" id="pn-men" placeholder="Escribe el nombre…"
+            autocomplete="off" oninput="showAC('pormen')" onkeydown="acKey(event,'pormen')">
+          <div class="ac" id="ac-pormen" style="display:none;"></div>
         </div>
       </div>
       <div class="igrp"><label>Goles recibidos</label>
-        <input class="ni" type="number" id="pc" placeholder="0" min="0"></div>
+        <input class="ni" type="number" id="pc-men" placeholder="0" min="0"></div>
       <div class="igrp"><label>&nbsp;</label>
-        <button class="btn-add" onclick="addInd('por')">＋ Añadir</button></div>
+        <button class="btn-add" onclick="addInd('pormen')">＋ Añadir</button></div>
     </div>
-    <div class="rank-wrap" id="wrap-por">
+    <div class="rank-wrap" id="wrap-pormen">
+      <div class="empty"><div>🧤</div>Sin porteros aún</div></div>
+
+    <!-- PORTEROS MAYOR -->
+    <div class="stitle" style="margin-top:32px;"><div class="stbar"></div><h2>Portero Menos Vencido — Categoría Mayor</h2></div>
+    <div class="hint-chip">✦ Autocompleta al escribir — suma goles si ya existe el portero</div>
+    <div class="indiv-form solo-admin" id="form-por-may">
+      <div class="igrp grow">
+        <label>Nombre del portero</label>
+        <div class="inp-wrap">
+          <input class="ti" type="text" id="pn-may" placeholder="Escribe el nombre…"
+            autocomplete="off" oninput="showAC('pormay')" onkeydown="acKey(event,'pormay')">
+          <div class="ac" id="ac-pormay" style="display:none;"></div>
+        </div>
+      </div>
+      <div class="igrp"><label>Goles recibidos</label>
+        <input class="ni" type="number" id="pc-may" placeholder="0" min="0"></div>
+      <div class="igrp"><label>&nbsp;</label>
+        <button class="btn-add" onclick="addInd('pormay')">＋ Añadir</button></div>
+    </div>
+    <div class="rank-wrap" id="wrap-pormay">
       <div class="empty"><div>🧤</div>Sin porteros aún</div></div>
   </div>
 
@@ -439,7 +481,7 @@ const ADMIN_PASS  = 'cerezo2025';  // ← CAMBIA ESTA CONTRASEÑA
 // ─────────────────────────────────────────────────────────────────
 
 let binId = '69e3e28736566621a8c99244';
-let db = {res:{}, gol:[], por:[]};
+let db = {res:{}, golmen:[], golmay:[], pormen:[], pormay:[]};
 let esAdmin = false;
 
 const EQ_MEN=["1ro. A (Japón)","1ro. B (Ecuador)","2do. A (Canadá)","2do. B (Alemania)","3ro. A (Brasil)","3ro. B (Uruguay)"];
@@ -667,26 +709,36 @@ function renderTabAuto(tbid,eqs,fix,pref){
 }
 
 // ─── AUTOCOMPLETE ────────────────────────────────────────────────
-let acIdx={gol:-1,por:-1};
+let acIdx={golmen:-1,golmay:-1,pormen:-1,pormay:-1};
+
+function getInputIds(t){
+  if(t==='golmen') return {n:'gn-men', v:'gc-men'};
+  if(t==='golmay') return {n:'gn-may', v:'gc-may'};
+  if(t==='pormen') return {n:'pn-men', v:'pc-men'};
+  if(t==='pormay') return {n:'pn-may', v:'pc-may'};
+}
+
 const getNoms=t=>[...new Set(db[t].map(x=>x.n))].sort();
 
 function showAC(t){
-  const val=document.getElementById(t==='gol'?'gn':'pn').value.trim();
+  const {n} = getInputIds(t);
+  const val=document.getElementById(n).value.trim();
   const lst=document.getElementById('ac-'+t);
   acIdx[t]=-1;
   if(!val){lst.style.display='none';return;}
-  const m=getNoms(t).filter(n=>n.toLowerCase().includes(val.toLowerCase()));
+  const m=getNoms(t).filter(x=>x.toLowerCase().includes(val.toLowerCase()));
   if(!m.length){lst.style.display='none';return;}
   const re=new RegExp(`(${val.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')})`,'gi');
-  lst.innerHTML=m.map(n=>`<div data-n="${n}" onmousedown="selAC('${t}','${n}')">${n.replace(re,'<em>$1</em>')}</div>`).join('');
+  lst.innerHTML=m.map(x=>`<div data-n="${x}" onmousedown="selAC('${t}','${x}')">${x.replace(re,'<em>$1</em>')}</div>`).join('');
   lst.style.display='block';
 }
 function selAC(t,n){
-  document.getElementById(t==='gol'?'gn':'pn').value=n;
+  const ids=getInputIds(t);
+  document.getElementById(ids.n).value=n;
   hideAC(t);
 }
 function hideAC(t){document.getElementById('ac-'+t).style.display='none';acIdx[t]=-1;}
-function hideAllAC(){hideAC('gol');hideAC('por');}
+function hideAllAC(){['golmen','golmay','pormen','pormay'].forEach(hideAC);}
 function acKey(e,t){
   const lst=document.getElementById('ac-'+t);
   const its=lst.querySelectorAll('div');
@@ -704,15 +756,16 @@ document.addEventListener('click',e=>{if(!e.target.closest('.inp-wrap')) hideAll
 
 // ─── INDIVIDUALES ────────────────────────────────────────────────
 async function addInd(t){
-  const nId=t==='gol'?'gn':'pn', vId=t==='gol'?'gc':'pc';
-  const n=document.getElementById(nId).value.trim().toUpperCase();
-  const v=parseInt(document.getElementById(vId).value)||0;
+  const ids=getInputIds(t);
+  const n=document.getElementById(ids.n).value.trim().toUpperCase();
+  const v=parseInt(document.getElementById(ids.v).value)||0;
   if(!n) return;
+  if(!db[t]) db[t]=[];
   const ex=db[t].find(x=>x.n===n);
   if(ex){ex.v=(parseInt(ex.v)||0)+v;}
   else{db[t].push({n,v});}
-  document.getElementById(nId).value='';
-  document.getElementById(vId).value='';
+  document.getElementById(ids.n).value='';
+  document.getElementById(ids.v).value='';
   hideAC(t);
   renderInd();
   await guardarDatos();
@@ -724,18 +777,21 @@ async function delInd(t,i){
 }
 
 function renderInd(){
-  ['gol','por'].forEach(t=>{
+  ['golmen','golmay','pormen','pormay'].forEach(t=>{
     const wrap=document.getElementById('wrap-'+t);
+    if(!wrap) return;
+    if(!db[t]) db[t]=[];
+    const esGol = t.startsWith('gol');
     const data=[...db[t]].sort((a,b)=>{
       const av=parseInt(a.v)||0,bv=parseInt(b.v)||0;
-      return t==='gol'?bv-av:av-bv;
+      return esGol?bv-av:av-bv;
     });
     if(!data.length){
-      wrap.innerHTML=`<div class="empty"><div>${t==='gol'?'👟':'🧤'}</div>Sin ${t==='gol'?'goleadores':'porteros menos vencidos'} aún</div>`;
+      wrap.innerHTML=`<div class="empty"><div>${esGol?'👟':'🧤'}</div>Sin ${esGol?'goleadores':'porteros'} aún</div>`;
       return;
     }
-    const lbl=t==='gol'?'Goles':'Goles Rec.';
-    const cls=t==='gol'?'vgol':'vpor';
+    const lbl=esGol?'Goles':'Goles Rec.';
+    const cls=esGol?'vgol':'vpor';
     const accion = esAdmin ? `<th>Acción</th>` : '';
     wrap.innerHTML=`<table>
       <thead><tr><th>#</th><th style="text-align:left">Nombre</th><th>${lbl}</th>${accion}</tr></thead>
@@ -757,7 +813,7 @@ function renderInd(){
 
 async function hardReset(){
   if(confirm('¿Borrar TODOS los datos del torneo? No se puede deshacer.')){
-    db={res:{},gol:[],por:[]};
+    db={res:{},golmen:[],golmay:[],pormen:[],pormay:[]};
     await guardarDatos();
     renderTodo();
   }
