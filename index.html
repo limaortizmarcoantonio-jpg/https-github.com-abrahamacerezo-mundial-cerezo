@@ -316,10 +316,10 @@ input.ni::placeholder{font-size:12px;color:var(--muted);font-weight:400;}
 .btn-reset:hover{background:var(--red);color:#fff;box-shadow:0 4px 16px rgba(229,57,53,.34);}
 
 /* Solo admin visible */
-.solo-admin{display:none;}
-body.admin-mode .solo-admin{display:flex;}
-body.admin-mode .solo-admin-inline{display:inline-flex;}
-.solo-admin-inline{display:none;}
+.solo-admin{display:none !important;}
+body.admin-mode .solo-admin{display:flex !important;}
+body.admin-mode .solo-admin-inline{display:inline-flex !important;}
+.solo-admin-inline{display:none !important;}
 
 ::-webkit-scrollbar{width:5px;height:5px;}
 ::-webkit-scrollbar-track{background:var(--gray);}
@@ -388,7 +388,8 @@ body.admin-mode .solo-admin-inline{display:inline-flex;}
 
   <div id="gol" class="content">
     <div class="stitle"><div class="stbar"></div><h2>Tabla de Goleadores</h2></div>
-    <div class="indiv-form solo-admin" style="display:none;">
+    <div class="hint-chip">✦ Autocompleta al escribir — suma goles si ya existe el jugador</div>
+    <div class="indiv-form solo-admin" id="form-gol">
       <div class="igrp grow">
         <label>Nombre del goleador</label>
         <div class="inp-wrap">
@@ -408,7 +409,8 @@ body.admin-mode .solo-admin-inline{display:inline-flex;}
 
   <div id="por" class="content">
     <div class="stitle"><div class="stbar"></div><h2>Portero Menos Vencido</h2></div>
-    <div class="indiv-form solo-admin" style="display:none;">
+    <div class="hint-chip">✦ Autocompleta al escribir — suma goles si ya existe el portero</div>
+    <div class="indiv-form solo-admin" id="form-por">
       <div class="igrp grow">
         <label>Nombre del portero</label>
         <div class="inp-wrap">
