@@ -432,11 +432,11 @@ body.admin-mode .solo-admin-inline{display:inline-flex;}
 <script>
 // ─── CONFIGURACIÓN ───────────────────────────────────────────────
 const JSONBIN_KEY = '$2a$10$T34mdn9e1ggfjpPveRFfvOzs0hWkC/5psksE9Ag/JzC7AhkW4pOiG';
-const JSONBIN_BIN = ''; // Se crea automáticamente en el primer uso
+const JSONBIN_BIN = '69e3e28736566621a8c99244'; // Contenedor fijo
 const ADMIN_PASS  = 'cerezo2025';  // ← CAMBIA ESTA CONTRASEÑA
 // ─────────────────────────────────────────────────────────────────
 
-let binId = localStorage.getItem('mundial_binId') || '';
+let binId = '69e3e28736566621a8c99244';
 let db = {res:{}, gol:[], por:[]};
 let esAdmin = false;
 
@@ -469,10 +469,6 @@ function setSyncStatus(estado, texto){
 
 async function cargarDatos(){
   setSyncStatus('loading','Cargando datos...');
-  if(!binId){
-    await crearBin();
-    return;
-  }
   try{
     const r = await fetch(`https://api.jsonbin.io/v3/b/${binId}/latest`,{
       headers:{'X-Master-Key': JSONBIN_KEY}
